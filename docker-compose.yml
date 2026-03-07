@@ -46,10 +46,7 @@ services:
       - "445:445"
     env_file: ["./env/samba.env"]
 
-    command: 
-      -u "Admin;${SMB_PASS_1}" 
-      -u "usuario;${SMB_PASS_2}" 
-      -s "Public;/share;yes;no;no;Admin,usuario"
+    command: ["-u", "Admin;${SMB_PASS_1}", "-u", "usuario;${SMB_PASS_2}", "-s", "Public;/share;yes;no;no;Admin,usuario"]
     volumes:
       - /tmp:/share
     restart: always
