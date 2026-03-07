@@ -33,7 +33,6 @@ services:
     ports:
       - "21:21"
       - "21000-21010:21000-21010"
-    env_file: ["./env/ftp.env"]
     environment:
       - USERS=${FTP_USERS_VAR}
     restart: always
@@ -44,8 +43,6 @@ services:
     ports:
       - "139:139"
       - "445:445"
-    env_file: ["./env/samba.env"]
-
     command: ["-u", "Admin;${SMB_PASS_1}", "-u", "usuario;${SMB_PASS_2}", "-s", "Public;/share;yes;no;no;Admin,usuario"]
     volumes:
       - /tmp:/share
