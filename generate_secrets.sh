@@ -29,3 +29,4 @@ EOF
 
 # Dar permisos restrictivos para que no se puedan leer fácilmente si no eres root
 chmod 600 env/*.env
+chmod 600 .env
