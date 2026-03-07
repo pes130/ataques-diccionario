@@ -26,3 +26,30 @@ services:
       - ./env/dbz.env
     command: sh -c "pip install flask && python app.py"
     restart: always
+
+  ftp:
+    image: delfer/alpine-ftp-server
+    container_name: reto_ftp
+    ports:
+      - "21:21"
+      - "21000-21010:21000-21010"
+    env_file: ["./env/ftp.env"]
+    environment:
+      - USERS=${FTP_USERS} 
+    restart: always
+
+  samba:
+    image: dperson/samba
+    container_name: reto_smb
+    ports:
+      - "139:139"
+      - "445:445"
+    env_file: ["./env/samba.env"]
+
+    command: >
+      -u "Admin;${SMB_PASS_usuario1}" 
+      -u "usuario;${SMB_PASS_usuario2}" 
+      -s "Public;/share;yes;no;no;Admin,usuario"
+    volumes:
+      - /tmp:/share
+    restart: always
