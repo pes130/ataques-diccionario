@@ -4,7 +4,7 @@ from flask import Flask, request, render_template
 app = Flask(__name__)
 
 # Credenciales objetivo
-TARGET_USER = "pablo1985esteban"
+TARGET_USER = "gustavo1983luque"
 TARGET_PASS = os.environ.get('DBZ_PASS', 'Kamehameha')
 
 @app.route('/', methods=['GET', 'POST'])
