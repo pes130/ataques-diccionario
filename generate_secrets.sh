@@ -20,7 +20,7 @@ PASS_FTP_usuario2=$(shuf -n 1 diccionario_servicios.txt)
 PASS_SMB_usuario1=$(shuf -n 1 diccionario_servicios.txt)
 PASS_SMB_usuario2=$(shuf -n 1 diccionario_servicios.txt)
 # Guardamos en .env
-echo "FTP_USERS=bisbal|$PASS_FTP_usuario1|/home/bisbal admin|$PASS_FTP_usuario1|/home/admin" > env/ftp.env
+echo "FTP_USERS=bisbal|$PASS_FTP_usuario1|/home/bisbal admin|$PASS_FTP_usuario2|/home/admin" > env/ftp.env
 echo "SMB_PASS_usuario1=$PASS_SMB_usuario1" > env/samba.env
 echo "SMB_PASS_usuario2=$PASS_SMB_usuario2" >> env/samba.env
 
