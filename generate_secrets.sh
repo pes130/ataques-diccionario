@@ -1,12 +1,13 @@
 #!/bin/bash
 # Nos aseguramos de estar en el directorio de trabajo
-cd /opt/reto
+mkdir -p /opt/ataques-diccionario
+cd /opt/ataques-diccionario
 
 # Crear directorio para las variables de entorno si no existe
 mkdir -p env
 
 # 1. Generar PIN del banco (4 dígitos, rellenando con ceros a la izquierda)
-PIN=$(shuf -i 0-9999 -n 1)
+PIN=$(shuf -i 1000-9999 -n 1)
 printf "BANCO_PIN=%04d\n" $PIN > env/banco.env
 
 # 2. Generar Pass de Dragon Ball
