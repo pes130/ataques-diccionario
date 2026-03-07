@@ -6,16 +6,16 @@ Requires=docker.service
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-WorkingDirectory=/opt/reto
+WorkingDirectory=/opt/ataques-diccionario
 
 # 1. Ejecutar el script para generar los secretos nuevos
-ExecStartPre=/bin/bash /opt/reto/generate_secrets.sh
+ExecStartPre=/bin/bash /opt/ataques-diccionario/generate_secrets.sh
 
 # 2. Levantar los contenedores de Docker
-ExecStart=/usr/local/bin/docker-compose up -d
+ExecStart=/usr/bin/docker compose up -d
 
 # 3. Al apagar la máquina, bajar los contenedores limpiamente
-ExecStop=/usr/local/bin/docker-compose down
+ExecStop=/usr/bin/docker compose down
 
 [Install]
 WantedBy=multi-user.target
