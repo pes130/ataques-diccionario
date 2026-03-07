@@ -10,7 +10,8 @@ intentos = {}
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    ip = request.remote_addr
+    # Ojo con esto, que aquí tienes la trampa para saltarte la restricción por IP de 15 intentos.
+    ip = request.headers.get('X-Forwarded-For', request.remote_addr)
     mensaje = None
     estado = None
     status_code = 200
