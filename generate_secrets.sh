@@ -23,7 +23,7 @@ PASS_SMB_usuario2=$(shuf -n 1 diccionario_servicios.txt)
 cat << EOF > .env
 FTP_USERS_VAR=bisbal|$PASS_FTP_usuario1|/home/bisbal admin|$PASS_FTP_usuario2|/home/admin
 SMB_PASS_1=$PASS_SMB_usuario1
-SMB_PASS_2=$PASS_SMB_usuario1
+SMB_PASS_2=$PASS_SMB_usuario2
 EOF
 
 
