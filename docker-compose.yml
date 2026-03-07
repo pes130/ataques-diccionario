@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  banco:
+    image: python:3.9-slim
+    container_name: reto_banco
+    ports:
+      - "8081:5000"
+    volumes:
+      - ./banco:/app
+    working_dir: /app
+    env_file:
+      - ./env/banco.env
+    command: sh -c "pip install flask && python app.py"
+    restart: always
+
+  dragonball:
+    image: python:3.9-slim
+    container_name: reto_dbz
+    ports:
+      - "8082:5000"
+    volumes:
+      - ./dragonball:/app
+    working_dir: /app
+    env_file:
+      - ./env/dbz.env
+    command: sh -c "pip install flask && python app.py"
+    restart: always
