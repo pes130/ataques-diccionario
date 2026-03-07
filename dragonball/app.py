@@ -1,30 +1,31 @@
 import os
-from flask import Flask, request
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
+# Credenciales objetivo
 TARGET_USER = "pablo1985esteban"
 TARGET_PASS = os.environ.get('DBZ_PASS', 'Kamehameha')
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
+    mensaje = None
+    estado = None
+    status_code = 200
+
     if request.method == 'POST':
         user = request.form.get('user')
         password = request.form.get('pass')
+        
         if user == TARGET_USER and password == TARGET_PASS:
-            return "<h1>¡LOGIN CORRECTO! Has invocado a Shenron.</h1>"
-        return "Error: Las bolas de dragón no han brillado.", 401
+            mensaje = "¡LOGIN CORRECTO! Has invocado a Shenron. Acceso a los planos del radar concedido."
+            estado = "success" # Verde en Bootstrap
+        else:
+            mensaje = "Error de seguridad. Las bolas de dragón no han brillado."
+            estado = "danger"  # Rojo en Bootstrap
+            status_code = 401
 
-    return '''
-        <style>body{background:#f0ad4e; font-family:sans-serif; text-align:center; margin-top:50px;}</style>
-        <h2>Capsule Corp. - Acceso Restringido</h2>
-        <form method="post">
-            Usuario: <input type="text" name="user"><br><br>
-            Password: <input type="password" name="pass"><br><br>
-            <input type="submit" value="Entrar">
-        </form>
-        <p><i>Pista: El usuario es nombre+año+apellido del administrador (todo minúsculas).</i></p>
-    '''
+    return render_template('index.html', mensaje=mensaje, estado=estado), status_code
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
