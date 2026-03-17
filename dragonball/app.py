@@ -11,7 +11,6 @@ TARGET_PASS = os.environ.get('DBZ_PASS', 'Kamehameha')
 def login():
     mensaje = None
     estado = None
-    status_code = 200
 
     if request.method == 'POST':
         user = request.form.get('user')
@@ -23,9 +22,8 @@ def login():
         else:
             mensaje = "Error de seguridad. Las bolas de dragón no han brillado."
             estado = "danger"  # Rojo en Bootstrap
-            status_code = 401
 
-    return render_template('index.html', mensaje=mensaje, estado=estado), status_code
+    return render_template('index.html', mensaje=mensaje, estado=estado), 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
