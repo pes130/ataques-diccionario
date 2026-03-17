@@ -14,7 +14,6 @@ def index():
     ip = request.headers.get('X-Forwarded-For', request.remote_addr)
     mensaje = None
     estado = None
-    status_code = 200
 
     if request.method == 'POST':
         # Handicap: bloqueo temporal si hay muchos intentos seguidos
@@ -29,9 +28,8 @@ def index():
             intentos[ip] = intentos.get(ip, 0) + 1
             mensaje = "PIN INCORRECTO"
             estado = "danger"  # Clase de Bootstrap para rojo
-            status_code = 401
             
-    return render_template('index.html', mensaje=mensaje, estado=estado), status_code
+    return render_template('index.html', mensaje=mensaje, estado=estado), 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
